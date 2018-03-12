@@ -1,0 +1,230 @@
+- model: shirts.shirt
+  pk: 1
+  fields:
+    name: Coheed
+    worn: False
+- model: shirts.shirt
+  pk: 2
+  fields:
+    name: Math the Band
+    worn: False
+- model: shirts.shirt
+  pk: 3
+  fields:
+    name: Death
+    worn: False
+- model: shirts.shirt
+  pk: 4
+  fields:
+    name: BTBAM
+    worn: False
+- model: shirts.shirt
+  pk: 5
+  fields:
+    name: Dillinger
+    worn: False
+- model: shirts.shirt
+  pk: 6
+  fields:
+    name: Gojira
+    worn: False
+- model: shirts.shirt
+  pk: 7
+  fields:
+    name: Protest the Hero
+    worn: False
+- model: shirts.shirt
+  pk: 8
+  fields:
+    name: Strapping Young Lad
+    worn: False
+- model: shirts.shirt
+  pk: 9
+  fields:
+    name: Warborne
+    worn: False
+- model: shirts.shirt
+  pk: 10
+  fields:
+    name: Star Wars Comic
+    worn: False
+- model: shirts.shirt
+  pk: 11
+  fields:
+    name: Kylo Ren
+    worn: False
+- model: shirts.shirt
+  pk: 12
+  fields:
+    name: BB-8
+    worn: False
+- model: shirts.shirt
+  pk: 13
+  fields:
+    name: R2-D2
+    worn: False
+- model: shirts.shirt
+  pk: 14
+  fields:
+    name: X-Files
+    worn: False
+- model: shirts.shirt
+  pk: 15
+  fields:
+    name: 9th Doctor
+    worn: False
+- model: shirts.shirt
+  pk: 16
+  fields:
+    name: Mouse Rat
+    worn: False
+- model: shirts.shirt
+  pk: 17
+  fields:
+    name: Horse
+    worn: False
+- model: shirts.shirt
+  pk: 18
+  fields:
+    name: Arcanine
+    worn: False
+- model: shirts.shirt
+  pk: 19
+  fields:
+    name: Zorua
+    worn: False
+- model: shirts.shirt
+  pk: 20
+  fields:
+    name: Kirby
+    worn: False
+- model: shirts.shirt
+  pk: 21
+  fields:
+    name: Yoshi and Toad
+    worn: False
+- model: shirts.shirt
+  pk: 22
+  fields:
+    name: Blastoise
+    worn: False
+- model: shirts.shirt
+  pk: 23
+  fields:
+    name: Zelda
+    worn: False
+- model: shirts.shirt
+  pk: 24
+  fields:
+    name: Bastion
+    worn: True
+- model: shirts.shirt
+  pk: 25
+  fields:
+    name: Nuka Cola
+    worn: False
+- model: shirts.shirt
+  pk: 26
+  fields:
+    name: Slimes
+    worn: False
+- model: shirts.shirt
+  pk: 27
+  fields:
+    name: Litten
+    worn: False
+- model: shirts.shirt
+  pk: 28
+  fields:
+    name: Toy Story
+    worn: False
+- model: shirts.shirt
+  pk: 29
+  fields:
+    name: Over the Garden Wall
+    worn: False
+- model: shirts.shirt
+  pk: 30
+  fields:
+    name: Howl's Moving Castle
+    worn: False
+- model: shirts.shirt
+  pk: 31
+  fields:
+    name: Rugrats
+    worn: False
+- model: shirts.shirt
+  pk: 32
+  fields:
+    name: Z-Fighters
+    worn: False
+- model: shirts.shirt
+  pk: 33
+  fields:
+    name: Mob Psycho
+    worn: False
+- model: shirts.shirt
+  pk: 34
+  fields:
+    name: Flapjack
+    worn: False
+- model: shirts.shirt
+  pk: 35
+  fields:
+    name: DBZ TCG
+    worn: False
+- model: shirts.shirt
+  pk: 36
+  fields:
+    name: Thor
+    worn: False
+- model: shirts.shirt
+  pk: 37
+  fields:
+    name: Hulk
+    worn: False
+- model: shirts.shirt
+  pk: 38
+  fields:
+    name: X-Men
+    worn: False
+- model: shirts.shirt
+  pk: 39
+  fields:
+    name: Spider-Man
+    worn: False
+- model: shirts.shirt
+  pk: 40
+  fields:
+    name: Howl
+    worn: False
+- model: shirts.shirt
+  pk: 41
+  fields:
+    name: Doctor Strange
+    worn: False
+- model: shirts.shirt
+  pk: 42
+  fields:
+    name: Daredevil
+    worn: False
+- model: shirts.shirt
+  pk: 43
+  fields:
+    name: Wolverine
+    worn: False
+- model: shirts.shirt
+  pk: 44
+  fields:
+    name: Batman
+    worn: False
+- model: shirts.shirt
+  pk: 45
+  fields:
+    name: Avengers
+    worn: False
+- model: shirts.shirt
+  pk: 46
+  fields:
+    name: Cuphead
+    worn: True
