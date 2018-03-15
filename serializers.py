@@ -20,4 +20,4 @@ class ShirtSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Shirt
-        fields = ('url', 'id', 'name', 'worn')
+        fields = ('url', 'id', 'name', 'worn', 'image')

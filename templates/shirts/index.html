@@ -7,6 +7,12 @@
     </div>
     <div id="app">
     {% if user.is_authenticated %}
+        <div class="row">
+	    <div class="col">
+                <img v-if="today.image" v-bind:src="today.image"  class="rounded mx-auto">
+                <img v-if="!today.image" src="/media/default.png" class="rounded mx-auto">
+            </div>
+        </div>
         <div class="row mt-3">
             <h2 v-if="today" class="col">[[ today.name ]]</h2>
         </div>
