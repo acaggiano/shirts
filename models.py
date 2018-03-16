@@ -5,3 +5,5 @@ class Shirt(models.Model):
     name = models.CharField(max_length=50)
     worn = models.BooleanField(default=False)
     image = models.ImageField(upload_to='uploads/shirts/', blank=True)
+    last_worn = models.DateField(null=True, blank=True)
+

@@ -1,7 +1,8 @@
 {% extends 'shirts/base.html' %}
+{% load static %}
 {% block content %}
 {% csrf_token %}
-<div class="container text-center pt-5">
+<div data-media-url="{% get_media_prefix %}" class="container text-center pt-5">
     <div class="row">
         <h1 class="col">Which shirt should I wear?</h1>
     </div>
@@ -23,7 +24,7 @@
             <div class="col-sm-3 mt-2 mt-sm-0">
                 <button v-on:click="getShirt()" type="button" class="w-100 btn btn-primary btn-lg">Nah</button>
             </div>
-        </div>
+       </div>
         <div v-if="today == 'None'" class="row mt-3">
             <div class="col-4 offset-4">
                 <button v-on:click="resetShirts()" type="button" class="w-100 btn-lg btn btn-danger">RESET</button>
@@ -46,6 +47,21 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <h3 class="col text-left">Recent Wears</h3>
+    </div>
+    <div class="row">
+        {% for shirt in recent %}
+            <div class="col-sm">
+                <div class="card">
+                    <img src="{% if shirt.image %}{{ media_url }}{{ shirt.image }}{% else %}/media/default.png{% endif %}" class="card-img-top" alt="Recent shirt">
+                    <small class="p-1 card-footer text-muted">
+                        {{ shirt.name }}<br>{{ shirt.last_worn }}
+                    </small>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </div>
  <!-- vue.js files -->

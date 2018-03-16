@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Shirt
+from mysite.settings import MEDIA_URL
 
 # Create your views here.
 
 def index(request):
-    # recent = Shirt.objects.filter(worn=True)[:5]
-    context = {}
+    recent = Shirt.objects.filter(worn=True).order_by('-last_worn')[:5]
+    context = {'recent': recent, 'media_url': MEDIA_URL}
     return render(request, 'shirts/index.html', context)
 
 def reset(request):
