@@ -111,7 +111,7 @@
             axios.put(this.today.url, this.today, {xsrfCookieName: 'csrftoken', xsrfHeaderName: 'X-CSRFToken'})
                 .then((response) => {
                     this.loaded = true;
-	            this.errorMessage = false;
+                    this.errorMessage = false;
                     this.message = 'Good choice! Have a great day!';
                 })
                 .catch((err) => {
