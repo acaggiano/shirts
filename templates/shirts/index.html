@@ -53,7 +53,7 @@
     </div>
     <div class="row">
         {% for shirt in recent %}
-            <div class="col-sm">
+            <div class="col-sm mb-2">
                 <div class="card">
                     <img src="{% if shirt.image %}{{ media_url }}{{ shirt.image }}{% else %}/media/default.png{% endif %}" class="card-img-top" alt="Recent shirt">
                     <small class="p-1 card-footer text-muted">
