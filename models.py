@@ -12,3 +12,6 @@ class Shirt(models.Model):
         if self.worn:
            self.last_worn = datetime.date.today()
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return "{}".format(self.name) 
