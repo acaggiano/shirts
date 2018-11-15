@@ -2,32 +2,41 @@
 {% load static %}
 {% block content %}
 {% csrf_token %}
-<div data-media-url="{% get_media_prefix %}" class="container text-center pt-5">
+<div data-media-url="{% get_media_prefix %}" class="text-center pt-5">
     <div class="row">
         <h1 class="col">Which shirt should I wear?</h1>
     </div>
     <div id="app">
     {% if user.is_authenticated %}
-        <div class="row">
-	    <div class="col">
-                <img v-if="today.image" v-bind:src="today.image"  class="img-fluid rounded mx-auto">
-                <img v-if="!today.image" src="/media/default.png" class="img-fluid rounded mx-auto">
+        <div v-if="loaded">
+	    <div class="row">
+	        <div class="col">
+                    <img v-if="shirts[n].image" v-bind:src="shirts[n].image"  class="img-fluid rounded mx-auto">
+                    <img v-else src="/media/default.png" class="img-fluid rounded mx-auto">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <h2 v-if="shirts[n]" class="col">[[ shirts[n].name ]]</h2>
+            </div>
+            <div v-show="!shirts[n].worn" class="row mt-3">
+                <div class="col-sm-3 offset-sm-3">
+                    <button v-on:click="wearShirt(shirts[n])" type="button" class="w-100 btn btn-primary btn-lg"> Wear</button>
+                </div>
+                <div class="col-sm-3 mt-2 mt-sm-0">
+                    <button v-on:click="n = nPlusPlus(n)" type="button" class="w-100 btn btn-primary btn-lg">Nah</button>
+                </div>
+            </div>
+            <div v-if="shirts.length == 0" class="row mt-3">
+                <div class="col-4 offset-4">
+                    <button v-on:click="resetShirts()" type="button" class="w-100 btn-lg btn btn-danger">RESET</button>
+                </div>
             </div>
         </div>
-        <div class="row mt-3">
-            <h2 v-if="today" class="col">[[ today.name ]]</h2>
-        </div>
-        <div v-if="!today.worn" class="row mt-3">
-            <div class="col-sm-3 offset-sm-3">
-                <button v-on:click="wearShirt()" type="button" class="w-100 btn btn-primary btn-lg">Wear</button>
-            </div>
-            <div class="col-sm-3 mt-2 mt-sm-0">
-                <button v-on:click="getShirt()" type="button" class="w-100 btn btn-primary btn-lg">Nah</button>
-            </div>
-       </div>
-        <div v-if="today == 'None'" class="row mt-3">
-            <div class="col-4 offset-4">
-                <button v-on:click="resetShirts()" type="button" class="w-100 btn-lg btn btn-danger">RESET</button>
+	<div class="row mt-3">
+            <div v-show="message" v-bind:class="[errorMessage ? 'bg-danger' : 'bg-success']" id="message" class="card col-md-6 offset-md-3 text-light">
+                <div class="card-body">
+                    [[ message ]]
+                </div>
             </div>
         </div>
     {% else %}
@@ -40,12 +49,6 @@
             </div>
         </div>
     {% endif %}
-        <div class="row mt-3">
-            <div v-show="message" v-bind:class="[errorMessage ? 'bg-danger' : 'bg-success']" id="message" class="card col-md-6 offset-md-3 text-light">
-                <div class="card-body">
-                    [[ message ]]
-                </div>
-            </div>
         </div>
     </div>
     <div class="row">
@@ -73,9 +76,9 @@
     el: '#app',
     delimiters: ['[[',']]'],
     data: {
+    n: 0,
     shirts: [],
-    today: {},
-    done: false,
+    loaded: false,
     errorMessage: false,
     message: null,
     },
@@ -91,35 +94,26 @@
               this.shirts = response.data;
               if(this.shirts.length == 0) {
                   this.errorMessage = true;
-                  this.today = 'None';
                   this.message = 'All shirts worn; Reset to continue...';
               } else {
-                  this.today = this.shirts[Math.floor(Math.random()*this.shirts.length)];
+                  this.loaded = true;
               }
             })
             .catch((err) => {
               console.log(err);
             })
       },
-      wearShirt: function(){
-        if(this.today == 'None') {
-            this.errorMessage = true;
-            this.message = 'Why did you think you could do that?';
-        }
-        else {
-            axios.patch(this.today.url, { 'worn': true }, {xsrfCookieName: 'csrftoken', xsrfHeaderName: 'X-CSRFToken'})
-                .then((response) => {
-                    this.loaded = true;
-                    this.errorMessage = false;
-                    this.message = 'Good choice! Have a great day!';
-                })
-                .catch((err) => {
-                    this.loaded = true;
-                    this.errorMessage = true;
-                    this.message = 'Maybe get better at programming dude.';
-                    console.log(err);
-                })
-        }
+      wearShirt: function(shirt){
+          axios.patch(shirt.url, { 'worn': true }, {xsrfCookieName: 'csrftoken', xsrfHeaderName: 'X-CSRFToken'})
+              .then((response) => {
+                  this.errorMessage = false;
+                  this.message = 'Good choice! Have a great day!';
+              })
+              .catch((err) => {
+                  this.errorMessage = true;
+                  this.message = 'Maybe get better at programming dude.';
+                  console.log(err);
+              })
       },
       resetShirts: function() {
         axios.get('ive_worn_all_my_shirts_once')
@@ -132,10 +126,8 @@
                 console.log(err);
             })
       },
-      loginPage: function(e) {
-        e.preventDefault();
-        this.errorMessage = true;
-        this.message = "You're not me, you liar!";
+      nPlusPlus: function(n) {
+          return (n + 1) % this.shirts.length;
       } 
     }
   });

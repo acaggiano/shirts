@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Shirt
-from mysite.settings import MEDIA_URL
+from shirtsite.settings import MEDIA_URL
 
 # Create your views here.
 
