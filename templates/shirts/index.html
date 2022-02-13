@@ -18,7 +18,7 @@
             <div class="row mt-3">
                 <h2 v-if="shirts[n]" class="col">[[ shirts[n].name ]]</h2>
             </div>
-            <div v-show="!shirts[n].worn" class="row mt-3">
+            <div v-show="!worn" class="row mt-3">
                 <div class="col-sm-3 offset-sm-3">
                     <button v-on:click="wearShirt(shirts[n])" type="button" class="w-100 btn btn-primary btn-lg"> Wear</button>
                 </div>
@@ -26,26 +26,29 @@
                     <button v-on:click="n = nPlusPlus(n)" type="button" class="w-100 btn btn-primary btn-lg">Nah</button>
                 </div>
             </div>
-            <div v-if="shirts.length == 0" class="row mt-3">
+            <div v-if="shirts.length <= 0" class="row mt-3">
                 <div class="col-4 offset-4">
                     <button v-on:click="resetShirts()" type="button" class="w-100 btn-lg btn btn-danger">RESET</button>
                 </div>
             </div>
         </div>
+
 	<div class="row mt-3">
-            <div v-show="message" v-bind:class="[errorMessage ? 'bg-danger' : 'bg-success']" id="message" class="card col-md-6 offset-md-3 text-light">
+        <div class="col-md-6 offset-md-3">
+            <div v-show="message" v-bind:class="[errorMessage ? 'bg-danger' : 'bg-success']" id="message" class="card text-light">
                 <div class="card-body">
                     [[ message ]]
                 </div>
             </div>
         </div>
+    </div>
     {% else %}
         <div class="row mt-3">
             <div class="col-sm-8 offset-sm-2">
                 <p class="lead">
                     Hello, This is a cool website I made to pick a shirt to wear for the day. That way I don't just wear 5 of the 50 shirts I own over and over.
                 </p>
-                <p>If you are me, please <a href="#" v-on:click="loginPage($event)">login.</a></p>
+                <p>If you are me, please login.</p>
             </div>
         </div>
     {% endif %}
@@ -78,6 +81,7 @@
     data: {
     n: 0,
     shirts: [],
+    worn: false,
     loaded: false,
     errorMessage: false,
     message: null,
@@ -107,6 +111,7 @@
           axios.patch(shirt.url, { 'worn': true }, {xsrfCookieName: 'csrftoken', xsrfHeaderName: 'X-CSRFToken'})
               .then((response) => {
                   this.errorMessage = false;
+                  this.worn = true;
                   this.message = 'Good choice! Have a great day!';
               })
               .catch((err) => {
