@@ -29,6 +29,6 @@ class ShirtViewSet(viewsets.ModelViewSet):
         queryset = Shirt.objects.all()
         param_worn = self.request.query_params.get('worn', None)
         if param_worn is not None:
-            queryset = queryset.filter(worn=param_worn)
+            queryset = queryset.filter(worn=param_worn).order_by('?')
         return queryset
     
